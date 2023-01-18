@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CapenexisLearners22.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CapenexisLearners22Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CapenexisLearners22Context") ?? throw new InvalidOperationException("Connection string 'CapenexisLearners22Context' not found.")));
 
 var app = builder.Build();
 
